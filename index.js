@@ -1,17 +1,19 @@
-const express = require('express')
-const usuario = require('./rutas/usuario.js')
+const express = require("express");
+const usuario = require("./rutas/usuario.js");
 
-const server = express()
+const server = express();
 
-server.set('port', 3000)
+server.set("port", 3000);
 
-server.use(express.json())
+server.use(express.json());
 
 // rutas de accesoa  la API
-server.use('/usuario', usuario)
+server.use("/usuario", usuario);
 
-server.get('*', (req, res) => {
-    res.status(200).send('Peticion rechazada')
-})
+// otras rutas
+server.get("*", (req, res) => {
+  res.status(200).json("Acceso denegado");
+});
 
-server.listen(process.env.PORT || server.get('port'))
+// Servidor Escucha
+server.listen(process.env.PORT || server.get("port"));
